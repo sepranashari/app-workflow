@@ -76,11 +76,12 @@ jobs:
       - name: Building IPA
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
-        
-      - uses: maierj/fastlane-action@v3.0.0
-        with:
-          lane: 'releasebeta'
-          subdirectory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios'
+          
+      - name: Fastlane releasebeta
+        working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios'
+        run: |
+          gem install fastlane
+          fastlane releasebeta
         env:
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
         
