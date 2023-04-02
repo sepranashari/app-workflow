@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
+          git init
           git clone ${{ secrets.GH_ADDRESS }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
