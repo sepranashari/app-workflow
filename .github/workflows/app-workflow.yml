@@ -77,6 +77,13 @@ jobs:
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
         
+      - uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'releasebeta'
+          subdirectory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios'
+        env:
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
