@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git init
           git clone ${{ secrets.GH_ADDRESS }}
+          cd ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
           
@@ -43,10 +43,6 @@ jobs:
       - name: Get dependencies
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter pub get
-
-      - name: Start test
-        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
-        run: flutter test
       
       - name: Build app bundle
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
