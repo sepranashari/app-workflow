@@ -73,14 +73,15 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           
-      - name: Building IPA
-        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
-        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+      #- name: Building IPA
+      #  working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
+      #  run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
           
       - name: Fastlane releasebeta
         working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios'
         run: |
           gem install fastlane
+          pwd
           fastlane releasebeta
         env:
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
