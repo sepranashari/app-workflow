@@ -1,0 +1,20 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: App Workflow
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        run: |
+          git clone ${{ secrets.GH_ADDRESS }}
+          git config user.name "${{ secrets.GH_USER }}"
+          git config user.email "${{ secrets.GH_MAIL }}"
+      
