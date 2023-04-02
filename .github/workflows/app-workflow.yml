@@ -81,7 +81,6 @@ jobs:
         working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios'
         run: |
           gem install fastlane
-          pwd
           fastlane releasebeta
         env:
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
