@@ -41,12 +41,14 @@ jobs:
           channel: 'stable'
   
       - name: Get dependencies
-        working-directory: ./sepran-app
+        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter pub get
 
       - name: Start test
+        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter test
       
       - name: Build app bundle
+        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter build appbundle
       
