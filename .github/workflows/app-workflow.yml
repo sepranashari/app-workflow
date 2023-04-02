@@ -52,5 +52,5 @@ jobs:
         working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/android'
         run: |
           gem install fastlane
-          bundle exec fastlane deploy
+          fastlane deploy
       
