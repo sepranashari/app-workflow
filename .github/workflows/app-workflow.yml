@@ -7,6 +7,10 @@ name: App Workflow
 
 on: [workflow_dispatch]
 
+env:
+  flutter_version: "${{ secrets.FLUTTER_VERSION }}"
+  java_version: "12.x"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,4 +22,30 @@ jobs:
           git clone ${{ secrets.GH_ADDRESS }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
+          
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: ${{ env.java_version }}
+          
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          # 11
+          flutter-version: ${{ env.flutter_version }}
+          channel: 'stable'
+  
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Start test
+        run: flutter test
+      
+      - name: Build app bundle
+        run: flutter build appbundle
       
