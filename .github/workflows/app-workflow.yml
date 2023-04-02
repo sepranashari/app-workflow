@@ -18,13 +18,10 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          pwd
-          ls
           git init
           git clone ${{ secrets.GH_ADDRESS }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
-          cd sepran-app
           
       - uses: actions/setup-java@v3
         with:
@@ -44,6 +41,7 @@ jobs:
           channel: 'stable'
   
       - name: Get dependencies
+        working-directory: ./sepran-app
         run: flutter pub get
 
       - name: Start test
