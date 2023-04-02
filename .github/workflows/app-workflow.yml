@@ -24,8 +24,7 @@ jobs:
           git clone ${{ secrets.GH_ADDRESS }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
-          pwd
-          ls
+          cd sepran-app
           
       - uses: actions/setup-java@v3
         with:
