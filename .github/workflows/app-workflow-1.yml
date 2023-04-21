@@ -22,6 +22,7 @@ jobs:
           cd ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
           git config user.name "${{ secrets.GH_USER }}"
           git config user.email "${{ secrets.GH_MAIL }}"
+          git checkout ${{ secrets.GH_BRANCH }}
           
       - uses: actions/setup-java@v3
         with:
@@ -48,9 +49,9 @@ jobs:
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter build appbundle
         
-      - name: Fastlane Release Android
-        working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/android'
-        run: |
-          gem install fastlane
-          fastlane deploy
+      #- name: Fastlane Release Android
+      #  working-directory: '${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/android'
+      #  run: |
+      #    gem install fastlane
+      #    fastlane deploy
       
