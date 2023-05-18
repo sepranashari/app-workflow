@@ -9,7 +9,7 @@ on: [workflow_dispatch]
 
 env:
   flutter_version: "${{ secrets.FLUTTER_VERSION }}"
-  java_version: "12.x"
+  java_version: "17"
 
 jobs:
   build:
