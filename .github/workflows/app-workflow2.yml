@@ -44,7 +44,11 @@ jobs:
       - name: Get dependencies
         working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}
         run: flutter pub get
-      
+        
+      - name: update pod
+        working-directory: ${{ secrets.MAIN_PROJECT_WORKING_DIRECTORY }}/ios
+        run: pod install --repo-update
+        
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
