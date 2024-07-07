@@ -24,13 +24,13 @@ jobs:
           git config user.email "${{ secrets.GH_MAIL }}"
           git checkout ${{ secrets.GH_BRANCH }}
           
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: ${{ env.java_version }}
           
       - name: Cache Flutter dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /Users/runner/hostedtoolcache/flutter
           key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
